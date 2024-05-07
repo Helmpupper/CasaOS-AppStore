@@ -1,0 +1,41 @@
+name: tailscale-HelmPupper
+services:
+  tailscale:
+    cpu_shares: 90
+    command: []
+    container_name: tailscaled
+    deploy:
+      resources:
+        limits:
+          memory: 1968M
+    environment:
+      - TS_AUTHKEY=x
+    hostname: tailscaled
+    image: tailscale/tailscale:latest
+    labels:
+      icon: https://tailscale.gallerycdn.vsassets.io/extensions/tailscale/vscode-tailscale/1.0.0/1698786256133/Microsoft.VisualStudio.Services.Icons.Default
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /var/lib
+        target: /var/lib
+      - type: bind
+        source: /dev/net/tun
+        target: /dev/net/tun
+    ports: []
+    devices: []
+    cap_add: []
+    network_mode: host
+x-casaos:
+  author: HelmPupper
+  category: Utilities
+  hostname: ""
+  icon: https://tailscale.gallerycdn.vsassets.io/extensions/tailscale/vscode-tailscale/1.0.0/1698786256133/Microsoft.VisualStudio.Services.Icons.Default
+  index: /
+  is_uncontrolled: false
+  port_map: ""
+  scheme: http
+  store_app_id: passionate_jacob
+  title:
+    custom: tailscale
